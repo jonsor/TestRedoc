@@ -1,0 +1,2883 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Settlement Api",
+    "description": "An API for retrieving and posting transactions from settlement providers to accounting systems.",
+    "contact": {
+      "name": "ZData AS",
+      "url": "https://www.zdata.no/kontakt-oss/"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v2/companies/{companyId}/erp-connections/{erpConnectionId}/accounting-rules/{accountingRuleId}": {
+      "get": {
+        "tags": [
+          "AccountingRule"
+        ],
+        "summary": "Get an accounting rule",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "accountingRuleId",
+            "in": "path",
+            "description": "The accounting rule id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an accounting rule response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AccountingRule"
+        ],
+        "summary": "Update an accounting rule",
+        "description": "Updates an existing accounting rule.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "accountingRuleId",
+            "in": "path",
+            "description": "The accounting rule id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object used to update an accounting rule",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Returns a accounting rule response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AccountingRule"
+        ],
+        "summary": "Delete an accounting rule",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "accountingRuleId",
+            "in": "path",
+            "description": "The accounting rule id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/erp-connections/{erpConnectionId}/accounting-rules": {
+      "get": {
+        "tags": [
+          "AccountingRule"
+        ],
+        "summary": "Get a list of accounting rules",
+        "description": "Retrieves list of accounting rules under a erp connection.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of accounting rules",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AccountingRule"
+        ],
+        "summary": "Create an accounting rule",
+        "description": "Accounting rules are used to specify which accounts to use accounts, when posting transaction to a ERP system",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "An object used to create a new accounting rule",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns a accounting rule response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingRuleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/agreements": {
+      "get": {
+        "tags": [
+          "Agreements"
+        ],
+        "summary": "Get all agreements under a resource group",
+        "description": "Retrieves all agreements under a resource group.<br />",
+        "parameters": [
+          {
+            "name": "resourceGroupId",
+            "in": "query",
+            "description": "Resource group Id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of available Agreements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Agreements"
+        ],
+        "summary": "Create an Agreement",
+        "description": "Creates a new Agreement under a resourcegroup.",
+        "requestBody": {
+          "description": "An object with resourceGroupId and name of the new agreement",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAgreementRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAgreementRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAgreementRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns an AgreementResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/agreements/{agreementId}": {
+      "get": {
+        "tags": [
+          "Agreements"
+        ],
+        "summary": "Get an Agreement",
+        "description": "Retrieves an agreement.",
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "description": "Agreement Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a AgreementResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Agreements"
+        ],
+        "summary": "Update an Agreement",
+        "description": "Updates an existing Agreement.",
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "description": "Agreement id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object containing updated agreement values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAgreementRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAgreementRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAgreementRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgreementResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Returns an Agreement"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Agreements"
+        ],
+        "summary": "Delete a Agreement",
+        "description": "Deletes an existing Agreement.",
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "description": "Agreement id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/agreements/{agreementId}/companies": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Get a paged list of all companies under an Agreement",
+        "description": "Retrieves list of companies.",
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "description": "An agreement id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "A page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of companies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Create a company",
+        "description": "Create a new company under the given agreement.<br />",
+        "parameters": [
+          {
+            "name": "agreementId",
+            "in": "path",
+            "description": "An agreement id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The name of the new company",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCompanyRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCompanyRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCompanyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the companyResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Get a Company",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Company Id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Returns a company"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Delete a company",
+        "description": "Delete an existing company.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "A company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Update a company",
+        "description": "Updates an existing company.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "A company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "new name for the company",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCompanyRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCompanyRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCompanyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Returns a company"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/connection-links/{connectionLinkId}": {
+      "get": {
+        "tags": [
+          "ConnectionLinks"
+        ],
+        "summary": "Get a connection link",
+        "description": "Retrieves a connection link with a settlement connection id and an accounting connection id.<br />\r\nA connection link directs the flow of transactions between linked connections.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "connectionLinkId",
+            "in": "path",
+            "description": "The connection link id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a connection link response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ConnectionLinks"
+        ],
+        "summary": "Update a connection link",
+        "description": "Updates an existing connection link.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "connectionLinkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The settlement connection id and an accounting connection id",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConnnectionLinkRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConnnectionLinkRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConnnectionLinkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a connection link response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ConnectionLinks"
+        ],
+        "summary": "Delete a connection link",
+        "description": "Deletes an existing connection link.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "connectionLinkId",
+            "in": "path",
+            "description": "The connection link id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/connection-links": {
+      "get": {
+        "tags": [
+          "ConnectionLinks"
+        ],
+        "summary": "Get a list of connection links",
+        "description": "Retrieves list of connection links.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of connection links",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ConnectionLinks"
+        ],
+        "summary": "Create a connection link",
+        "description": "Creates a connection link between a settlement connection and an accounting connection.<br />\r\nA connection link directs the flow of transactions between linked connections.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The settlement connection id and an accounting connection id",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConnnectionLinkRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConnnectionLinkRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConnnectionLinkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns a connection link response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionLinkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/erp-connections": {
+      "get": {
+        "tags": [
+          "ErpConnections"
+        ],
+        "summary": "Get a list of erp connections",
+        "description": "Retrieves list of erp connections.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of erp connections responses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ErpConnections"
+        ],
+        "summary": "Create a erp connection",
+        "description": "Creates a erp connection and one or more accounting rules.\r\nErp connection and accounting rules are used when posting data to a ERP-system",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "An object used when creating a erp connection and accounting rules",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateErpConnectionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateErpConnectionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateErpConnectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns a erp connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/erp-connections/{erpConnectionId}": {
+      "get": {
+        "tags": [
+          "ErpConnections"
+        ],
+        "summary": "Get a erp connection",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a erp connection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ErpConnections"
+        ],
+        "summary": "Update a erp connection",
+        "description": "Updates an existing erp connection.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Object used to update an erp connection",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateErpConnectionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateErpConnectionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateErpConnectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErpConnectionResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Returns the updated erp connection response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ErpConnections"
+        ],
+        "summary": "Delete a erp connection and related accounting rules",
+        "description": "Deletes an existing erp connection",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "erpConnectionId",
+            "in": "path",
+            "description": "The erp connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/settlement-connections/{settlementConnectionId}": {
+      "get": {
+        "tags": [
+          "SettlementConnections"
+        ],
+        "summary": "Get a settlement connection",
+        "description": "Retrieves a settlement connection.<br />\r\nA settlement connection represents a connection to an external settlement provider.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "settlementConnectionId",
+            "in": "path",
+            "description": "The settlement connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a settlement connection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SettlementConnections"
+        ],
+        "summary": "Update a settlement connection",
+        "description": "Updates a settlement settlement connection.<br />\r\nThe connection type must match the type of the existing settlement connection.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "settlementConnectionId",
+            "in": "path",
+            "description": "The settlement connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A request with a connection type and connection details for the settlement provider",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateSettlementConnnectionRequest"
+              },
+              "examples": {
+                "Klarna": {
+                  "value": {"ConnectionType":"Klarna","StartDate":"2022-08-31T23:01:55.3879741+02:00","ConnectionDetails":{"username":"Username","password":"Password","region":"Region","useTestEnvironment":false}}
+                },
+                "NetsEasy": {
+                  "value": {"ConnectionType":"NetsEasy","StartDate":"2022-08-31T23:01:55.3881413+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                },
+                "PayPal": {
+                  "value": {"ConnectionType":"PayPal","StartDate":"2022-08-31T23:01:55.3881877+02:00","ConnectionDetails":{"clientId":"ClientId","clientSecret":"ClientSecret"}}
+                },
+                "Stripe": {
+                  "value": {"ConnectionType":"Stripe","StartDate":"2022-08-31T23:01:55.3882238+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateSettlementConnnectionRequest"
+              },
+              "examples": {
+                "Klarna": {
+                  "value": {"ConnectionType":"Klarna","StartDate":"2022-08-31T23:01:55.3879741+02:00","ConnectionDetails":{"username":"Username","password":"Password","region":"Region","useTestEnvironment":false}}
+                },
+                "NetsEasy": {
+                  "value": {"ConnectionType":"NetsEasy","StartDate":"2022-08-31T23:01:55.3881413+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                },
+                "PayPal": {
+                  "value": {"ConnectionType":"PayPal","StartDate":"2022-08-31T23:01:55.3881877+02:00","ConnectionDetails":{"clientId":"ClientId","clientSecret":"ClientSecret"}}
+                },
+                "Stripe": {
+                  "value": {"ConnectionType":"Stripe","StartDate":"2022-08-31T23:01:55.3882238+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateSettlementConnnectionRequest"
+              },
+              "examples": {
+                "Klarna": {
+                  "value": {"ConnectionType":"Klarna","StartDate":"2022-08-31T23:01:55.3879741+02:00","ConnectionDetails":{"username":"Username","password":"Password","region":"Region","useTestEnvironment":false}}
+                },
+                "NetsEasy": {
+                  "value": {"ConnectionType":"NetsEasy","StartDate":"2022-08-31T23:01:55.3881413+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                },
+                "PayPal": {
+                  "value": {"ConnectionType":"PayPal","StartDate":"2022-08-31T23:01:55.3881877+02:00","ConnectionDetails":{"clientId":"ClientId","clientSecret":"ClientSecret"}}
+                },
+                "Stripe": {
+                  "value": {"ConnectionType":"Stripe","StartDate":"2022-08-31T23:01:55.3882238+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SettlementConnections"
+        ],
+        "summary": "Delete a settlement connection",
+        "description": "Deletes a settlement settlement connection, and all related connection links.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "settlementConnectionId",
+            "in": "path",
+            "description": "The settlement connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/settlement-connections": {
+      "get": {
+        "tags": [
+          "SettlementConnections"
+        ],
+        "summary": "Get a list of settlement connections",
+        "description": "Retrieves list of settlement connections.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of settlement connection responses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SettlementConnections"
+        ],
+        "summary": "Create a settlement connection",
+        "description": "Creates a settlement settlement connection.<br />\r\nA settlement connection represents a connection to an external settlement provider.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request with a connection type and connection details for the settlement provider",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateSettlementConnnectionRequest"
+              },
+              "examples": {
+                "Klarna": {
+                  "value": {"ConnectionType":"Klarna","StartDate":"2022-08-31T23:01:55.3936615+02:00","ConnectionDetails":{"username":"Username","password":"Password","region":"Region","useTestEnvironment":false}}
+                },
+                "NetsEasy": {
+                  "value": {"ConnectionType":"NetsEasy","StartDate":"2022-08-31T23:01:55.3938403+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                },
+                "PayPal": {
+                  "value": {"ConnectionType":"PayPal","StartDate":"2022-08-31T23:01:55.3939322+02:00","ConnectionDetails":{"clientId":"ClientId","clientSecret":"ClientSecret"}}
+                },
+                "Stripe": {
+                  "value": {"ConnectionType":"Stripe","StartDate":"2022-08-31T23:01:55.3939925+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateSettlementConnnectionRequest"
+              },
+              "examples": {
+                "Klarna": {
+                  "value": {"ConnectionType":"Klarna","StartDate":"2022-08-31T23:01:55.3936615+02:00","ConnectionDetails":{"username":"Username","password":"Password","region":"Region","useTestEnvironment":false}}
+                },
+                "NetsEasy": {
+                  "value": {"ConnectionType":"NetsEasy","StartDate":"2022-08-31T23:01:55.3938403+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                },
+                "PayPal": {
+                  "value": {"ConnectionType":"PayPal","StartDate":"2022-08-31T23:01:55.3939322+02:00","ConnectionDetails":{"clientId":"ClientId","clientSecret":"ClientSecret"}}
+                },
+                "Stripe": {
+                  "value": {"ConnectionType":"Stripe","StartDate":"2022-08-31T23:01:55.3939925+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateSettlementConnnectionRequest"
+              },
+              "examples": {
+                "Klarna": {
+                  "value": {"ConnectionType":"Klarna","StartDate":"2022-08-31T23:01:55.3936615+02:00","ConnectionDetails":{"username":"Username","password":"Password","region":"Region","useTestEnvironment":false}}
+                },
+                "NetsEasy": {
+                  "value": {"ConnectionType":"NetsEasy","StartDate":"2022-08-31T23:01:55.3938403+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                },
+                "PayPal": {
+                  "value": {"ConnectionType":"PayPal","StartDate":"2022-08-31T23:01:55.3939322+02:00","ConnectionDetails":{"clientId":"ClientId","clientSecret":"ClientSecret"}}
+                },
+                "Stripe": {
+                  "value": {"ConnectionType":"Stripe","StartDate":"2022-08-31T23:01:55.3939925+02:00","ConnectionDetails":{"apiKey":"ApiKey"}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns a settlement settlement connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementConnectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get transactions for company",
+        "description": "Retrieves a list of transactions for all settlement connections belonging to a company.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "The oldest settlement date from which the transactions will be provided",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "The newest, most recent settlement date to which the transactions will be provided",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 500
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/settlement-connections/{settlementConnectionId}/transactions": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get transactions for settlement connection",
+        "description": "Retrieves a list of transactions for a settlement connection.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "settlementConnectionId",
+            "in": "path",
+            "description": "The settlement connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "description": "The oldest settlement date from which the transactions will be provided",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "description": "The newest, most recent settlement date to which the transactions will be provided",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The amount of items on each page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 500
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paged result of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseIEnumerablePage"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseIEnumerablePage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseIEnumerablePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v2/companies/{companyId}/settlement-connections/{settlementConnectionId}/transactions/{transactionId}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get transaction",
+        "description": "Retrieves a transaction.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The company id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "settlementConnectionId",
+            "in": "path",
+            "description": "The settlement connection id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "transactionId",
+            "in": "path",
+            "description": "The transaction",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a transaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountingRuleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "erpConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "cashAccount": {
+            "type": "string"
+          },
+          "interimAccount": {
+            "type": "string"
+          },
+          "bankAccount": {
+            "type": "string"
+          },
+          "feeCreditAccount": {
+            "type": "string"
+          },
+          "feeDebitAccount": {
+            "type": "string"
+          },
+          "defaultRule": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountingRuleResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AccountingRuleResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgreementResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgreementResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AgreementResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompanyResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompanyResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CompanyResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectionLinkResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "settlementConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountingConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectionLinkResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ConnectionLinkResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAgreementRequest": {
+        "type": "object",
+        "properties": {
+          "resourceGroupId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateCompanyRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateConnnectionLinkRequest": {
+        "type": "object",
+        "properties": {
+          "settlementConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountingConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateErpConnectionRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "integrationType": {
+            "$ref": "#/components/schemas/IntegrationType"
+          },
+          "postToLedger": {
+            "type": "boolean"
+          },
+          "descriptionTemplate": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "accountingRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateOrUpdateAccountingRuleRequest"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateAccountingRuleRequest": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "description": "Three-letter ISO currency code representing the currency for the account."
+          },
+          "cashAccount": {
+            "type": "string",
+            "description": "Cash account number."
+          },
+          "interimAccount": {
+            "type": "string",
+            "description": "Interim account number."
+          },
+          "bankAccount": {
+            "type": "string",
+            "description": "Bank account number."
+          },
+          "feeCreditAccount": {
+            "type": "string",
+            "description": "Fee credit account number."
+          },
+          "feeDebitAccount": {
+            "type": "string",
+            "description": "Fee debit account number."
+          },
+          "defaultRule": {
+            "type": "boolean",
+            "description": "Use default rule."
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateSettlementConnnectionRequest": {
+        "type": "object",
+        "properties": {
+          "connectionType": {
+            "$ref": "#/components/schemas/SettlementConnectionType"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "connectionDetails": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/KlarnaConnectionDetails"
+              },
+              {
+                "$ref": "#/components/schemas/NetsEasyConnectionDetails"
+              },
+              {
+                "$ref": "#/components/schemas/PayPalConnectionDetails"
+              },
+              {
+                "$ref": "#/components/schemas/StripeConnectionDetails"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErpConnectionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "integrationType": {
+            "$ref": "#/components/schemas/IntegrationType"
+          },
+          "postToLedger": {
+            "type": "boolean"
+          },
+          "descriptionTemplate": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "accountingRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingRuleResponse"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErpConnectionResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ErpConnectionResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "IntegrationType": {
+        "enum": [
+          "POS",
+          "Invoice"
+        ],
+        "type": "string"
+      },
+      "KlarnaConnectionDetails": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "useTestEnvironment": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NetsEasyConnectionDetails": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PayPalConnectionDetails": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "string"
+          },
+          "clientSecret": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SettlementConnectionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "connectionDetailsKey": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SettlementConnectionType"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "lastSyncDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SettlementConnectionResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SettlementConnectionResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SettlementConnectionType": {
+        "enum": [
+          "PayPal",
+          "Stripe",
+          "Klarna",
+          "Ftp",
+          "Zettle",
+          "NetsEasy",
+          "SveaFinance"
+        ],
+        "type": "string"
+      },
+      "StripeConnectionDetails": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "transactionType": {
+            "$ref": "#/components/schemas/TransactionType"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "purchaseDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "settlementDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "externalTransactionId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "batchId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "transactionsReference1": {
+            "type": "string",
+            "description": "Used as a potential field for matching up orders,\r\nIt's either this or !:TransactionDto.TransactionsReference2 (not added yet)"
+          },
+          "transactionGroupId": {
+            "type": "string"
+          },
+          "settlementConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "transactionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "transactionStatus": {
+            "$ref": "#/components/schemas/TransactionStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionResponseIEnumerablePage": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TransactionResponse"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionStatus": {
+        "enum": [
+          "New",
+          "Error",
+          "Scheduled",
+          "Transferred"
+        ],
+        "type": "string"
+      },
+      "TransactionType": {
+        "enum": [
+          "Payment",
+          "Fee"
+        ],
+        "type": "string"
+      },
+      "UpdateAgreementRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateCompanyRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateConnnectionLinkRequest": {
+        "type": "object",
+        "properties": {
+          "settlementConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountingConnectionId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateErpConnectionRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "integrationType": {
+            "$ref": "#/components/schemas/IntegrationType"
+          },
+          "postToLedger": {
+            "type": "boolean"
+          },
+          "descriptionTemplate": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://id.dev.zdata.io/connect/authorize",
+            "scopes": {
+              "services.settlement zam": "Access to Settlement Api"
+            }
+          },
+          "password": {
+            "tokenUrl": "https://id.dev.zdata.io/connect/token",
+            "scopes": {
+              "services.settlement zam": "Access to Settlement Api"
+            }
+          },
+          "clientCredentials": {
+            "tokenUrl": "https://id.dev.zdata.io/connect/token",
+            "scopes": {
+              "services.settlement zam": "Access to Settlement Api"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [
+        "services.settlement zam"
+      ]
+    }
+  ]
+}
